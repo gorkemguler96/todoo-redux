@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addTodo} from "../redux/todos/todosSlice";
+import {addTodoAsync} from "../redux/todos/todosSlice";
 
 function Form(props) {
     const dispatch = useDispatch()
     const [title,setTitle] = useState("")
 
-    const handleSumbit = (e) => {
+    const handleSumbit = async (e) => {
         e.preventDefault()
         if(title.length){
             const date = new Date().getTime()
-            dispatch(addTodo({id:date , title, completed: false}))
+            await dispatch(addTodoAsync({id:date , title, completed: false}))
             setTitle('')
         }
 

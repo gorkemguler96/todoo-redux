@@ -1,12 +1,17 @@
 import React from 'react';
 import {useSelector,useDispatch} from "react-redux";
-import {changeActiveFilter,allRemoveItem} from "../redux/todos/todosSlice";
+import {changeActiveFilter,allRemoveTodoAsync} from "../redux/todos/todosSlice";
 
 function ContentFooter(props) {
     const dispatch = useDispatch()
     const items =useSelector(state=>state.todos.items)
     const itemsLeft = items.filter((item)=>item.completed).length
     const activeFilter = useSelector((state)=>state.todos.activeFilter)
+
+    const handleAllRemove = async (items)=>{
+        // dispatch(allRemoveTodoAsync())
+        console.log(items)
+    }
 
     return (
         <footer className="footer">
@@ -43,7 +48,7 @@ function ContentFooter(props) {
                 </li>
             </ul>
 
-            <button onClick={()=>dispatch(allRemoveItem())} className="clear-completed">
+            <button onClick={handleAllRemove(items)} className="clear-completed">
                 Clear completed
             </button>
         </footer>
